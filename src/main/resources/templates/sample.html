@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample QR</title>
+</head>
+<body>
+<script src="./qart-codes-browser.min.js"></script>
+<script>
+	makeQR(
+		`哈哈哈`,
+		"./temp.jpg",
+		{
+			qrOpts: {
+				/**
+				 * L (Low)	~7%
+				 * M (Medium)	~15%
+				 * Q (Quartile)	~25%
+				 * H (High)	~30%
+				 */
+				errorCorrectionLevel: 'H',  // See https://www.npmjs.com/package/qrcode#error-correction-level
+				version: 4  // You may pin the QR version used here, no lower than 2.
+			},
+			size: {
+				boxSize: 12,  // The base size, in px, that each square should take in the grid.
+				scale: 0.35  // Scale the "small" boxes down to this ratio.
+			},
+			colors: {
+				dark: 'black',  // The color to use for the dark squares.
+				light: 'white', // The color to use for the light squares.
+				overlay: ''  // If set, cover the background image in a color - this can be used to increase readability.
+			},
+			useSVG: false  // See "Encoding SVGs".
+		}
+	).then(async canv => {
+		console.log('ret:', canv);
+		const uri = URL.createObjectURL(await canv.toBlob('image/png', 0.95));
+		const img = new Image();
+		img.src = uri;
+		document.body.appendChild(img);
+	})
+</script>
+
+
+</body>
+</html>

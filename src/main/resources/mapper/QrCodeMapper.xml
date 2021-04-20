@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC " -//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.odianyun.qrcode.mapper.QrCodeMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
+        insert into qr_code
+        (
+            qrcode, style_json, is_deleted, create_time
+        )
+        values
+        (
+            #{qrcode}, #{styleJson}, #{isDeleted}, #{createTime}
+        )
+    </insert>
+
+    <insert id="insertAll">
+        insert into qr_code
+        (
+            qrcode, style_json, is_deleted, create_time
+        )
+        values
+        <foreach collection="list" item="obj" separator=",">
+        (
+            #{obj.qrcode}, #{obj.styleJson}, #{obj.isDeleted}, #{obj.createTime}
+        )
+        </foreach>
+    </insert>
+
+    <update id="update">
+        update qr_code
+        <set>
+            <if test="qrcode != null">
+                qrcode = #{qrcode},
+            </if>
+            <if test="styleJson != null">
+                style_json = #{styleJson},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateAll">
+        update qr_code
+        <set>
+            qrcode = #{qrcode},
+            style_json = #{styleJson},
+            create_time = #{createTime},
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="deleteById">
+        update qr_code set is_deleted = 1 where id = #{value}
+    </update>
+
+    <select id="queryById" resultType="com.odianyun.qrcode.model.QrCodePO">
+        select * from qr_code where id = #{value}
+    </select>
+
+    <select id="queryList" resultType="com.odianyun.qrcode.model.QrCodePO">
+        select * from qr_code
+    </select>
+
+</mapper>

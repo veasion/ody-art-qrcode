@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./artqrcode.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="qrcode"></div>
+</body>
+<script>
+    const typeMap = {
+        'cookie': {
+            border: "./materials/cookie/border.png",
+            eye: "./materials/cookie/eye.png",
+            row4: "./materials/cookie/row4.png",
+
+            // col4: "./materials/cookie/col2.png",
+            // row2col3: "./materials/cookie/row2col2.png",
+            // row3col2: "./materials/cookie/row2col2.png",
+            // col3: ["./materials/cookie/col2.png"],
+
+            row2col2: "./materials/cookie/row2col2.png",
+            corner: "./materials/cookie/corner.png",
+
+            // row2: ["./materials/electron/row3.png"],
+
+            col2: "./materials/cookie/col2.png",
+            single: ["./materials/electron/single.png"],
+        },
+        'electron': {
+            border: "./materials/electron/border.png",
+            eye: "./materials/electron/eye.png",
+            row4: "./materials/electron/row4.png",
+            col4: "./materials/electron/col3.png",
+            row2col3: "./materials/electron/row2col3.png",
+            row3col2: "./materials/electron/row3col2.png",
+            col3: ["./materials/electron/col3.png", "./materials/electron/col3_2.png"],
+            row2col2: "./materials/electron/row2col2.png",
+            corner: "./materials/electron/corner.png",
+            row2: ["./materials/electron/row2.png", "./materials/electron/row2_2.png"],
+            col2: "./materials/electron/col2.png",
+            single: ["./materials/electron/single.png", "./materials/electron/single_2.png"],
+        },
+        'pinkgirl': {
+            border: "./materials/pinkgirl/border.jpg",
+            eye: "./materials/pinkgirl/eye.png",
+            row4: "./materials/pinkgirl/row4.png",
+            row2col3: "./materials/pinkgirl/row2col3.png",
+            row3col2: "./materials/pinkgirl/row3col2.png",
+            row2col2: "./materials/pinkgirl/row2col2.png",
+            corner: "./materials/pinkgirl/corner.png",
+            col2: "./materials/pinkgirl/col2.png",
+            single: ["./materials/pinkgirl/single.png"],
+        }
+    };
+    function qr(type) {
+        let options = {
+            text: "哈哈哈",
+            width: 500,
+            height: 500,
+            codeWidth: 320,
+            codeHeight: 320,
+            top: 85,
+            left: 80,
+            materials: typeMap[type || 'electron']
+        };
+        new QRCode(document.getElementById("qrcode"), options);
+    }
+    qr('electron');
+</script>
+
+</html>
