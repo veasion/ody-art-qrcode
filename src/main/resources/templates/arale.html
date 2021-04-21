@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>arale qrcode</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            background: #eee;
+        }
+
+        .ctn {
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        .ctn .qr-ctn {
+            margin: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="ctn">
+    <div class="qr-ctn" id="qr-base"></div>
+    <div class="qr-ctn" id="qr-table"></div>
+    <div class="qr-ctn" id="qr-canvas"></div>
+    <div class="qr-ctn" id="qr-svg"></div>
+</div>
+
+<script src="./js/arale-qrcode.min.js"></script>
+
+<script>
+    window.onload = function () {
+        let qrnode;
+
+        qrnode = new AraleQRCode({
+            text: '哈哈哈',
+            size: 200
+        });
+        document.getElementById('qr-base').appendChild(qrnode);
+
+        qrnode = new AraleQRCode({
+            render: 'table',
+            correctLevel: 2,
+            pdground: '#00aaee',
+            text: '哈哈哈',
+            size: 200,
+            image: './image/icon.png'
+        });
+        document.getElementById('qr-table').appendChild(qrnode);
+
+        qrnode = new AraleQRCode({
+            render: 'canvas', // `canvas` -> `svg` -> `table`
+            correctLevel: 2, // 纠错级别，可取0、1、2、3，数字越大说明所需纠错级别越大(默认3)
+            text: '哈哈哈', // 二维码数据
+            size: 200, // 二维码宽高，默认256
+            background: '#eeeeee', // 背景色
+            foreground: '#667766', // 前景色
+            pdground: '#00aaee',  // 三个角的颜色
+            image: './image/icon.png', // 中间图片（正方形）
+            imageSize: 50 // 图片宽高
+        });
+        document.getElementById('qr-canvas').appendChild(qrnode);
+
+        qrnode = new AraleQRCode({
+            correctLevel: 2,
+            render: 'svg',
+            text: '哈哈哈',
+            size: 200,
+            pdground: '#00aaee',
+            image: './image/icon.png',
+            imageSize: 30
+        });
+        document.getElementById('qr-svg').appendChild(qrnode);
+    }
+
+</script>
+</body>
+</html>

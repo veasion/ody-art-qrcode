@@ -27,16 +27,6 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("/editor")
-    public String editor() {
-        return "editor";
-    }
-
-    @RequestMapping("/sample")
-    public String sample() {
-        return "sample";
-    }
-
     @RequestMapping("/generate")
     @ResponseBody
     public QrCodePO generate(@RequestParam String qrCode) {
