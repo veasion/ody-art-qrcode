@@ -9,17 +9,10 @@ public class QrCodePO implements Serializable {
 
     private Long id;
     private String qrcode;
+    private String ip;
     private String styleJson;
     private Long isDeleted;
     private Date createTime;
-
-    public Long getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Long isDeleted) {
-        this.isDeleted = isDeleted;
-    }
 
     public Long getId() {
         return id;
@@ -37,12 +30,28 @@ public class QrCodePO implements Serializable {
         this.qrcode = qrcode;
     }
 
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
     public String getStyleJson() {
         return styleJson;
     }
 
     public void setStyleJson(String styleJson) {
         this.styleJson = styleJson;
+    }
+
+    public Long getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Long isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     public Date getCreateTime() {
@@ -52,5 +61,4 @@ public class QrCodePO implements Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-
 }

@@ -5,23 +5,23 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
         insert into qr_code
         (
-            qrcode, style_json, is_deleted, create_time
+            qrcode, ip, style_json, is_deleted, create_time
         )
         values
         (
-            #{qrcode}, #{styleJson}, #{isDeleted}, #{createTime}
+            #{qrcode}, #{ip}, #{styleJson}, #{isDeleted}, #{createTime}
         )
     </insert>
 
     <insert id="insertAll">
         insert into qr_code
         (
-            qrcode, style_json, is_deleted, create_time
+            qrcode, ip, style_json, is_deleted, create_time
         )
         values
         <foreach collection="list" item="obj" separator=",">
         (
-            #{obj.qrcode}, #{obj.styleJson}, #{obj.isDeleted}, #{obj.createTime}
+            #{obj.qrcode}, #{obj.ip}, #{obj.styleJson}, #{obj.isDeleted}, #{obj.createTime}
         )
         </foreach>
     </insert>
@@ -31,6 +31,9 @@
         <set>
             <if test="qrcode != null">
                 qrcode = #{qrcode},
+            </if>
+            <if test="ip != null">
+                ip = #{ip},
             </if>
             <if test="styleJson != null">
                 style_json = #{styleJson},
@@ -48,9 +51,11 @@
     <update id="updateAll">
         update qr_code
         <set>
-            qrcode = #{qrcode},
+            qrcode = #{qrcode}
+            ip = #{ip},
             style_json = #{styleJson},
-            create_time = #{createTime},
+            is_deleted = #{isDeleted},
+            create_time = #{createTime}
         </set>
         where id = #{id}
     </update>
